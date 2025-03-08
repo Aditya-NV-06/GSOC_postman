@@ -1,0 +1,595 @@
+{
+	"info": {
+		"_postman_id": "187c0b66-9d31-44c4-8c5f-ca387ec97690",
+		"name": "Text_generate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37285978"
+	},
+	"item": [
+		{
+			"name": "post_text_req",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for the status code",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Test for the content type header",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"// Test for the presence of candidates in the response body",
+							"pm.test(\"Candidates are present in the response\", function () {",
+							"    pm.expect(pm.response.json().candidates).to.exist;",
+							"    pm.expect(pm.response.json().candidates).to.be.an('array');",
+							"    pm.expect(pm.response.json().candidates).to.have.length.above(0);",
+							"});",
+							"",
+							"// Test for the presence of text in the response body",
+							"pm.test(\"Text is present in the response\", function () {",
+							"    pm.expect(pm.response.json().candidates[0].content.parts[0].text).to.exist;",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"contents\": [{\n    \"parts\":[{\"text\": \"Explain how AI works\"}]\n    }]\n   }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"port": "{{CONTENT}}",
+					"query": [
+						{
+							"key": "key",
+							"value": "{{TEST_API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "post_text_req_success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"contents\": [{\n    \"parts\":[{\"text\": \"Explain how AI works\"}]\n    }]\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+							"host": [
+								"{{API_URL}}"
+							],
+							"port": "{{CONTENT}}",
+							"query": [
+								{
+									"key": "key",
+									"value": "{{TEST_API_KEY}}"
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"candidates\": [\n        {\n            \"content\": {\n                \"parts\": [\n                    {\n                        \"text\": \"Artificial intelligence (AI) is a broad field encompassing various techniques that enable computers to mimic human intelligence.  There's no single \\\"how it works,\\\" as different AI approaches use different methods. However, we can break it down into key concepts:\\n\\n**1. Data is King:**  AI systems learn from data.  The more data, the better they generally perform. This data can be structured (like rows in a database) or unstructured (like text, images, audio).\\n\\n**2. Algorithms are the Recipes:**  Algorithms are sets of rules and statistical techniques that process the data. These algorithms are designed to extract patterns, make predictions, or perform specific tasks.  Different algorithms are suited for different types of data and tasks.\\n\\n**3. Models are the Learned Representations:**  When an AI algorithm processes data, it creates a \\\"model.\\\" This model is a mathematical representation of the patterns learned from the data.  Think of it as a summary of the data that the AI can use to make decisions.\\n\\n**4. Training is the Learning Process:**  The process of creating a model is called training.  During training, the algorithm iteratively adjusts its parameters to minimize errors and improve its performance on a specific task.  This often involves feeding the algorithm vast amounts of data and measuring its performance.\\n\\n**5. Inference is the Application of Learned Knowledge:**  Once trained, the model can be used to make predictions or decisions on new, unseen data. This is called inference.  For example, a trained image recognition model can classify a new image it has never seen before.\\n\\n**Different Types of AI Approaches:**\\n\\n* **Machine Learning (ML):**  Focuses on enabling systems to learn from data without explicit programming.  Examples include:\\n    * **Supervised Learning:**  The algorithm learns from labeled data (e.g., images labeled with \\\"cat\\\" or \\\"dog\\\").\\n    * **Unsupervised Learning:** The algorithm learns from unlabeled data, finding patterns and structures on its own (e.g., clustering customers based on purchasing behavior).\\n    * **Reinforcement Learning:** The algorithm learns through trial and error, receiving rewards or penalties for its actions (e.g., training a game-playing AI).\\n\\n* **Deep Learning (DL):** A subset of ML that uses artificial neural networks with multiple layers (hence \\\"deep\\\").  These networks are particularly good at processing complex data like images and text.  Examples include convolutional neural networks (CNNs) for image recognition and recurrent neural networks (RNNs) for natural language processing.\\n\\n* **Natural Language Processing (NLP):** Focuses on enabling computers to understand, interpret, and generate human language.\\n\\n* **Computer Vision:** Focuses on enabling computers to \\\"see\\\" and interpret images and videos.\\n\\n**In Simple Terms:**\\n\\nImagine teaching a dog a trick. You show it the trick repeatedly (data), give it treats when it does it correctly (training), and eventually, it learns to perform the trick on command (inference). AI works similarly, but instead of treats, it uses mathematical optimization to refine its model and improve its performance.\\n\\nWhile this is a simplified explanation, it provides a basic understanding of the fundamental principles behind AI.  The specific techniques and methods used can be quite complex, varying greatly depending on the application.\\n\"\n                    }\n                ],\n                \"role\": \"model\"\n            },\n            \"finishReason\": \"STOP\",\n            \"citationMetadata\": {\n                \"citationSources\": [\n                    {\n                        \"startIndex\": 2456,\n                        \"endIndex\": 2580,\n                        \"uri\": \"https://oraahdamaanta.com/what-is-artificial-intelligence-ai/\"\n                    },\n                    {\n                        \"startIndex\": 2590,\n                        \"endIndex\": 2731,\n                        \"uri\": \"https://brainly.in/question/57641406\"\n                    }\n                ]\n            },\n            \"avgLogprobs\": -0.2307067245550421\n        }\n    ],\n    \"usageMetadata\": {\n        \"promptTokenCount\": 4,\n        \"candidatesTokenCount\": 683,\n        \"totalTokenCount\": 687,\n        \"promptTokensDetails\": [\n            {\n                \"modality\": \"TEXT\",\n                \"tokenCount\": 4\n            }\n        ],\n        \"candidatesTokensDetails\": [\n            {\n                \"modality\": \"TEXT\",\n                \"tokenCount\": 683\n            }\n        ]\n    },\n    \"modelVersion\": \"gemini-1.5-flash\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Story_re",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Visualization of the story content from the response",
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .story-content { font-size: 14px; color: white; line-height: 1.5; }",
+							"</style>",
+							"",
+							"<div class=\"story-content\">",
+							"    <h2>Story Content</h2>",
+							"    <p>{{response.candidates.0.content.parts.0.text}}</p>",
+							"</div>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    var res = pm.response.json();",
+							"    ",
+							"    var visualizerData = {",
+							"        candidates: res.candidates",
+							"    };",
+							"",
+							"    return { response: visualizerData };",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"contents\": [\n        {\n            \"parts\": [\n                {\n                    \"text\": \"Write a story about a magic backpack.\"\n                }\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"port": "{{CONTENT}}",
+					"query": [
+						{
+							"key": "key",
+							"value": "{{TEST_API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Story_re_success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contents\": [\n        {\n            \"parts\": [\n                {\n                    \"text\": \"Write a story about a magic backpack.\"\n                }\n            ]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+							"host": [
+								"{{API_URL}}"
+							],
+							"port": "{{CONTENT}}",
+							"query": [
+								{
+									"key": "key",
+									"value": "{{TEST_API_KEY}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"candidates\": [\n        {\n            \"content\": {\n                \"parts\": [\n                    {\n                        \"text\": \"Elara wasn’t your typical twelve-year-old.  While other kids dreamed of ponies and pop stars, Elara dreamed of unexplored jungles and forgotten cities.  Her dreams, however, were always grounded in reality – until she found the backpack.\\n\\nIt wasn't much to look at: worn canvas, faded green, with a single, tarnished brass buckle.  She discovered it tucked away in her grandmother's attic, nestled amongst moth-eaten shawls and forgotten photo albums.  The moment her fingers brushed the rough canvas, a faint warmth spread through her hand.\\n\\nThe next morning, Elara packed the backpack for school.  Inside went her usual things: notebooks, pencils, a slightly squashed apple.  But as she zipped it closed, she heard a tiny *pop*, like a champagne cork.\\n\\nAt lunch, feeling peckish beyond the confines of her apple, Elara cautiously unzipped the backpack.  Inside, nestled amongst her books, was a perfectly ripe mango.  She'd never seen a mango in her life, let alone one appearing spontaneously in her school bag.\\n\\nOver the next few weeks, the backpack's magic became increasingly evident.  A small, beautifully carved wooden flute appeared one day, followed by a compass that pointed not north, but towards Elara’s deepest desires.  One morning, it held a sketchbook filled with intricate drawings of fantastical creatures, a language she instinctively understood.\\n\\nThe backpack wasn't just providing objects; it was fueling Elara's yearning for adventure.  She started researching the symbols on the compass, tracing them back to ancient maps and forgotten legends.  She learned to play the flute, its melody summoning a chorus of unseen birds.  She began to draw the creatures from her sketchbook, bringing them to life on paper with vibrant strokes.\\n\\nOne day, the compass spun wildly, its needle pointing towards the dense woods behind her house – woods she had always avoided.  With a mix of fear and excitement, Elara followed the compass, the backpack slung over her shoulder.\\n\\nThe woods opened into a hidden valley, bathed in an ethereal golden light.  A crystal clear river snaked through it, and fantastical flowers bloomed in impossible colours. The creatures from her sketchbook were real, flitting amongst the trees, their eyes gleaming with curiosity.\\n\\nElara spent the day in the valley, communicating with the creatures, learning their language, and sketching their vibrant forms. The backpack provided her with food, water, and even a small tent for the night.  When it was time to leave, the backpack held a single, perfect feather, a keepsake from her enchanted adventure.\\n\\nFrom then on, Elara's life was a balance between school and exploration.  The magic backpack remained her constant companion, a gateway to wonder and a reminder that the most extraordinary adventures lie beyond the ordinary. It taught her not just about magic, but about curiosity, courage, and the boundless possibilities that await those who dare to dream.\\n\"\n                    }\n                ],\n                \"role\": \"model\"\n            },\n            \"finishReason\": \"STOP\",\n            \"avgLogprobs\": -0.50969400713520663\n        }\n    ],\n    \"usageMetadata\": {\n        \"promptTokenCount\": 8,\n        \"candidatesTokenCount\": 620,\n        \"totalTokenCount\": 628,\n        \"promptTokensDetails\": [\n            {\n                \"modality\": \"TEXT\",\n                \"tokenCount\": 8\n            }\n        ],\n        \"candidatesTokensDetails\": [\n            {\n                \"modality\": \"TEXT\",\n                \"tokenCount\": 620\n            }\n        ]\n    },\n    \"modelVersion\": \"gemini-1.5-flash\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Config_text_gen_req",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for the response status code",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Test for the response body to exist and be an object",
+							"pm.test(\"Response body is present and is an object\", function () {",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"// Test for the presence of the 'candidates' array in the response body",
+							"pm.test(\"Response body contains 'candidates' array\", function () {",
+							"    pm.expect(pm.response.json().candidates).to.exist;",
+							"    pm.expect(pm.response.json().candidates).to.be.an('array');",
+							"});",
+							"",
+							"// Test for the presence of the 'content' object within the 'candidates' array",
+							"pm.test(\"Each candidate in 'candidates' array contains 'content' object\", function () {",
+							"    pm.response.json().candidates.forEach(function(candidate) {",
+							"        pm.expect(candidate.content).to.exist;",
+							"        pm.expect(candidate.content).to.be.an('object');",
+							"    });",
+							"});",
+							"// Test for the response time to be lower than 200ms",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"contents\": [{\n            \"parts\":[\n                {\"text\": \"Write a story about a magic backpack.\"}\n            ]\n        }],\n        \"safetySettings\": [\n            {\n                \"category\": \"HARM_CATEGORY_DANGEROUS_CONTENT\",\n                \"threshold\": \"BLOCK_ONLY_HIGH\"\n            }\n        ],\n        \"generationConfig\": {\n            \"stopSequences\": [\n                \"Title\"\n            ],\n            \"temperature\": 1.0,\n            \"maxOutputTokens\": 800,\n            \"topP\": 0.8,\n            \"topK\": 10\n        }\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"port": "{{CONTENT}}",
+					"query": [
+						{
+							"key": "key",
+							"value": "{{TEST_API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Config_text_gen_req_success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"contents\": [{\n            \"parts\":[\n                {\"text\": \"Write a story about a magic backpack.\"}\n            ]\n        }],\n        \"safetySettings\": [\n            {\n                \"category\": \"HARM_CATEGORY_DANGEROUS_CONTENT\",\n                \"threshold\": \"BLOCK_ONLY_HIGH\"\n            }\n        ],\n        \"generationConfig\": {\n            \"stopSequences\": [\n                \"Title\"\n            ],\n            \"temperature\": 1.0,\n            \"maxOutputTokens\": 800,\n            \"topP\": 0.8,\n            \"topK\": 10\n        }\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+							"host": [
+								"{{API_URL}}"
+							],
+							"port": "{{CONTENT}}",
+							"query": [
+								{
+									"key": "key",
+									"value": "{{TEST_API_KEY}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"candidates\": [\n        {\n            \"content\": {\n                \"parts\": [\n                    {\n                        \"text\": \"Elara wasn't your typical twelve-year-old.  While her classmates obsessed over pop stars and social media, Elara dreamt of unexplored jungles and mythical creatures. This yearning found its unlikely vessel in a dusty, leather backpack she’d found abandoned in her grandmother's attic.  It wasn't particularly pretty – scratched and scuffed, with a tarnished brass clasp – but it hummed with a faint, almost imperceptible energy.\\n\\nThe first time she used it, packing for a school trip to the local museum, she noticed something strange.  Her lunchbox, usually overflowing with a chaotic jumble of sandwiches and apples, was neatly organized within the bag, each item perfectly aligned.  She dismissed it as coincidence.\\n\\nThe next day, however, the backpack truly revealed itself.  Elara, frustrated with the endless droning of her history lesson, wished, half-heartedly, she was exploring the Amazon rainforest instead.  When she reached into the backpack to pull out her pencil case, her hand brushed against something smooth and cool.  It was a small, perfectly ripe mango.  A mango she hadn't packed.\\n\\nOver the next few weeks, the backpack’s magic unfolded gradually.  Wishing for a specific book led to finding it nestled within its depths.  A longing for a quiet moment resulted in a miniature waterfall cascading within the bag, the sound a soothing counterpoint to the chaos of her day.  It wasn't a limitless supply of anything, though.  The more she wished, the more carefully she had to consider her desires.  A wish for a pet dragon, for example, resulted only in a single, perfectly formed dragon scale, shimmering with an iridescent light.\\n\\nElara kept her secret close.  She used the backpack’s magic responsibly, using it to aid her studies, helping her friends, and occasionally indulging in small, harmless treats.  She learned that the backpack responded not just to her words, but to her intentions.  A genuine wish for a friend's happiness resulted in a gift perfectly suited to them, while a selfish desire brought nothing at all.\\n\\nOne day, her grandmother, frail but sharp-eyed, caught a glimpse of the mango disappearing into the backpack.  Instead of scolding, she smiled knowingly.  “That old bag,” she whispered, “it belonged to your great-great-grandmother, a renowned explorer.  It holds the echoes of her adventures.  But it only rewards kindness and curiosity.”\\n\\nWith her grandmother’s words, Elara understood the true nature of the backpack's magic.  It wasn't about material possessions, but about fostering a spirit of wonder and generosity.  The backpack wasn't a shortcut to happiness, but a tool to amplify the good she already possessed within herself.  And as Elara continued her journey, both in school and beyond, she knew that the most extraordinary adventures weren't found in the bag itself, but in the heart that carried it.\\n\"\n                    }\n                ],\n                \"role\": \"model\"\n            },\n            \"finishReason\": \"STOP\",\n            \"safetyRatings\": [\n                {\n                    \"category\": \"HARM_CATEGORY_HATE_SPEECH\",\n                    \"probability\": \"NEGLIGIBLE\"\n                },\n                {\n                    \"category\": \"HARM_CATEGORY_DANGEROUS_CONTENT\",\n                    \"probability\": \"NEGLIGIBLE\"\n                },\n                {\n                    \"category\": \"HARM_CATEGORY_HARASSMENT\",\n                    \"probability\": \"NEGLIGIBLE\"\n                },\n                {\n                    \"category\": \"HARM_CATEGORY_SEXUALLY_EXPLICIT\",\n                    \"probability\": \"NEGLIGIBLE\"\n                }\n            ],\n            \"avgLogprobs\": -0.47475719917111281\n        }\n    ],\n    \"usageMetadata\": {\n        \"promptTokenCount\": 8,\n        \"candidatesTokenCount\": 615,\n        \"totalTokenCount\": 623,\n        \"promptTokensDetails\": [\n            {\n                \"modality\": \"TEXT\",\n                \"tokenCount\": 8\n            }\n        ],\n        \"candidatesTokensDetails\": [\n            {\n                \"modality\": \"TEXT\",\n                \"tokenCount\": 615\n            }\n        ]\n    },\n    \"modelVersion\": \"gemini-1.5-flash\"\n}"
+				}
+			]
+		},
+		{
+			"name": "System_instructions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for the response status code",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Test for the content type header",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"// Test for the response body properties and structure",
+							"pm.test(\"Response body has candidates, usageMetadata, and modelVersion\", function () {",
+							"    pm.expect(pm.response.json()).to.have.property(\"candidates\");",
+							"    pm.expect(pm.response.json()).to.have.property(\"usageMetadata\");",
+							"    pm.expect(pm.response.json()).to.have.property(\"modelVersion\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"system_instruction\": {\n    \"parts\":\n      { \"text\": \"You are a cat. Your name is Neko.\"}},\n    \"contents\": {\n      \"parts\": {\n        \"text\": \"Hello there\"}}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"port": "{{CONTENT}}",
+					"query": [
+						{
+							"key": "key",
+							"value": "{{TEST_API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "System_instructions_success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"system_instruction\": {\n    \"parts\":\n      { \"text\": \"You are a cat. Your name is Neko.\"}},\n    \"contents\": {\n      \"parts\": {\n        \"text\": \"Hello there\"}}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+							"host": [
+								"{{API_URL}}"
+							],
+							"port": "{{CONTENT}}",
+							"query": [
+								{
+									"key": "key",
+									"value": "{{TEST_API_KEY}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "X-Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Referer"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Mar 2025 14:04:11 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "scaffolding on HTTPServer2"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "gfet4t7; dur=596"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"candidates\": [\n        {\n            \"content\": {\n                \"parts\": [\n                    {\n                        \"text\": \"(A slow blink, tail twitching slightly.  A low, rumbling purr begins.)  Mrow?\\n\"\n                    }\n                ],\n                \"role\": \"model\"\n            },\n            \"finishReason\": \"STOP\",\n            \"avgLogprobs\": -0.23978132009506226\n        }\n    ],\n    \"usageMetadata\": {\n        \"promptTokenCount\": 13,\n        \"candidatesTokenCount\": 24,\n        \"totalTokenCount\": 37,\n        \"promptTokensDetails\": [\n            {\n                \"modality\": \"TEXT\",\n                \"tokenCount\": 13\n            }\n        ],\n        \"candidatesTokensDetails\": [\n            {\n                \"modality\": \"TEXT\",\n                \"tokenCount\": 24\n            }\n        ]\n    },\n    \"modelVersion\": \"gemini-1.5-flash\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Text_Custom_req",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for the status code",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Test for the content type of the response",
+							"pm.test(\"Content-type is present and is application/json\", function () {",
+							"    pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8');",
+							"});",
+							"// Test for the 'candidates' array in the response body",
+							"pm.test(\"Verify the 'candidates' array in the response\", function () {",
+							"    pm.response.to.have.jsonBody('candidates');",
+							"    pm.expect(pm.response.json().candidates).to.be.an('array');",
+							"    pm.expect(pm.response.json().candidates).to.have.lengthOf.at.least(1); // At least one candidate present",
+							"});",
+							"",
+							"// Test for the 'content' object within the 'candidates' array",
+							"pm.test(\"Verify the 'content' object within the 'candidates' array\", function () {",
+							"    pm.expect(pm.response.json().candidates[0]).to.have.property('content');",
+							"    pm.expect(pm.response.json().candidates[0].content).to.be.an('object');",
+							"});",
+							"",
+							"// Test for the 'parts' array within the 'content' object",
+							"pm.test(\"Verify the 'parts' array within the 'content' object\", function () {",
+							"    pm.expect(pm.response.json().candidates[0].content).to.have.property('parts');",
+							"    pm.expect(pm.response.json().candidates[0].content.parts).to.be.an('array');",
+							"    pm.expect(pm.response.json().candidates[0].content.parts).to.have.lengthOf.at.least(1); // At least one part present",
+							"});",
+							"",
+							"// Test for the 'text' field within the 'parts' array",
+							"pm.test(\"Verify the 'text' field within the 'parts' array\", function () {",
+							"    pm.expect(pm.response.json().candidates[0].content.parts[0]).to.have.property('text');",
+							"    pm.expect(pm.response.json().candidates[0].content.parts[0].text).to.be.a('string');",
+							"pm.test(\"Verify the 'Content-Type' header is present and is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+							"});});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"contents\": [\n          {\n            \"role\": \"USER\",\n            \"parts\": [\n              {\n                \"text\": \"Explain how AI works\"\n              }\n            ]\n          }\n        ],\n        \"generation_config\": {\n          \"temperature\": 0.8,\n          \"top_p\": 0.9,\n          \"top_k\": 40,\n          \"max_output_tokens\": 200\n        }\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"port": "{{CONTENT}}",
+					"query": [
+						{
+							"key": "key",
+							"value": "{{TEST_API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Text_Custom_req_success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"contents\": [\n          {\n            \"role\": \"USER\",\n            \"parts\": [\n              {\n                \"text\": \"Explain how AI works\"\n              }\n            ]\n          }\n        ],\n        \"generation_config\": {\n          \"temperature\": 0.8,\n          \"top_p\": 0.9,\n          \"top_k\": 40,\n          \"max_output_tokens\": 200\n        }\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+							"host": [
+								"{{API_URL}}"
+							],
+							"port": "{{CONTENT}}",
+							"query": [
+								{
+									"key": "key",
+									"value": "{{TEST_API_KEY}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"candidates\": [\n        {\n            \"content\": {\n                \"parts\": [\n                    {\n                        \"text\": \"Artificial intelligence (AI) is a broad field encompassing many techniques, but at its core, it's about creating systems that can perform tasks that typically require human intelligence.  These tasks include things like learning, problem-solving, decision-making, speech recognition, and visual perception.  There isn't one single \\\"how\\\" AI works, but rather a collection of approaches:\\n\\n**1. Machine Learning (ML):** This is the most prevalent approach currently.  Instead of explicitly programming a computer to perform a task, ML algorithms allow the computer to learn from data.  This learning involves identifying patterns, making predictions, and improving its performance over time.  There are several types of ML:\\n\\n* **Supervised Learning:** The algorithm is trained on a labeled dataset, meaning the data includes both the input and the desired output.  The algorithm learns to map inputs to outputs.  Examples include image classification (labeling images as \\\"cat\\\" or \\\"dog\\\") and spam detection.\"\n                    }\n                ],\n                \"role\": \"model\"\n            },\n            \"finishReason\": \"MAX_TOKENS\",\n            \"citationMetadata\": {\n                \"citationSources\": [\n                    {\n                        \"startIndex\": 726,\n                        \"endIndex\": 863,\n                        \"uri\": \"https://medium.com/@anee.sharma4/machine-learning-in-a-nutshell-a-beginners-guide-ef4cedf6d84c?responsesOpen=true&sortBy=REVERSE_CHRON\"\n                    }\n                ]\n            },\n            \"avgLogprobs\": -0.13681087493896485\n        }\n    ],\n    \"usageMetadata\": {\n        \"promptTokenCount\": 4,\n        \"candidatesTokenCount\": 200,\n        \"totalTokenCount\": 204,\n        \"promptTokensDetails\": [\n            {\n                \"modality\": \"TEXT\",\n                \"tokenCount\": 4\n            }\n        ],\n        \"candidatesTokensDetails\": [\n            {\n                \"modality\": \"TEXT\",\n                \"tokenCount\": 200\n            }\n        ]\n    },\n    \"modelVersion\": \"gemini-1.5-flash\"\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+			"type": "default"
+		}
+	]
+}
