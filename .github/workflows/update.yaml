@@ -1,0 +1,26 @@
+name: Update the Postman collection
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    update:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the repository
+              uses: actions/checkout@v2
+            
+            - name: Sync Postman Collections
+              uses: jneate/postman-collection-action@v1
+              with:
+                postmanApiKey: ${{ secrets.POSTMANAPIKEY }}
+                postmanWorkspaceId: 0f41daa6-c9a7-49d9-8455-707e2f46da22
+                postmanTimeout: 30000
+            
+            - name: Commit Updated Postman Collection IDs
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                commit_message: Updated Postman Collection ID
+ 
