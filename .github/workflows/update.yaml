@@ -17,9 +17,9 @@ jobs:
           echo "Validating Postman Collections..."
           # Add commands to validate and process your Postman collections
           # For example, using Newman:
-          newman run path/to/collection/Chat_generate.json || exit 1
-          newman run path/to/collection/Text_generate.json || exit 1
-          newman run path/to/collection/Code_Exec.json || exit 1
+          newman run ./Chat_Generation/Chat_generate.postman_collection.json || exit 1
+          newman run ./Text_Generation/Text_generate.postman_collection.json || exit 1
+          newman run ./Code_Execution/Code_Exec.postman_collection.json || exit 1
         env:
           POSTMAN_API_KEY: ${{ secrets.POSTMANAPIKEY }}
 
