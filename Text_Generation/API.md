@@ -12,6 +12,15 @@ research paper and etc..</p>
    - <strong>generateContent</strong>
    - <strong>streamGenerateContent</strong>
 
+### Ways to generate text using the gemini api 
+
+   - Generate text from text-only input
+   - Generate text from text-and-image input
+   - Generate a text stream
+   - Build an interactive chat
+   - Enable chat streaming
+   - Configure text generation
+   - Add system instructions
 
 ### API Environment
     
