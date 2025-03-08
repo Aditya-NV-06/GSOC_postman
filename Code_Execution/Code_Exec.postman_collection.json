@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "286d43ce-cfa7-4330-90e5-e217b47107b7",
+		"name": "Code_Exec",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37285978"
+	},
+	"item": [
+		{
+			"name": "Code_req",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for the status code",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Test for the 'candidates' array in the response body",
+							"pm.test(\"Response body should have 'candidates' array\", function () {",
+							"    pm.expect(pm.response.json()).to.have.property('candidates').that.is.an('array');",
+							"    pm.expect(pm.response.json().candidates).to.have.lengthOf.at.least(1);",
+							"});",
+							"",
+							"// Test for the 'content' object within the 'candidates' array",
+							"pm.test(\"Each 'candidate' in the response should have 'content' object\", function () {",
+							"    pm.response.json().candidates.forEach(candidate => {",
+							"        pm.expect(candidate).to.have.property('content').that.is.an('object');",
+							"    });",
+							"});",
+							"",
+							"// Test for the 'parts' array within the 'content' object",
+							"pm.test(\"Each 'content' object should have 'parts' array\", function () {",
+							"    pm.response.json().candidates.forEach(candidate => {",
+							"        pm.expect(candidate.content).to.have.property('parts').that.is.an('array');",
+							"        pm.expect(candidate.content.parts).to.have.lengthOf.at.least(1);",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tools\": [\n        {\n            \"code_execution\": {}\n        }\n    ],\n    \"contents\": {\n        \"parts\": {\n            \"text\": \"What is the sum of the first 50 prime numbers? Generate and run code for the calculation, and make sure you get all 50.\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"port": "{{CONTENT}}",
+					"query": [
+						{
+							"key": "key",
+							"value": "{{TEST_API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Code_req_success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tools\": [\n        {\n            \"code_execution\": {}\n        }\n    ],\n    \"contents\": {\n        \"parts\": {\n            \"text\": \"What is the sum of the first 50 prime numbers? Generate and run code for the calculation, and make sure you get all 50.\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+							"host": [
+								"{{API_URL}}"
+							],
+							"port": "{{CONTENT}}",
+							"query": [
+								{
+									"key": "key",
+									"value": "{{TEST_API_KEY}}"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Code_Chat_req",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"tools\": [{\"code_execution\": {}}],\n    \"contents\": [\n        {\n            \"role\": \"user\",\n            \"parts\": [{\n                \"text\": \"Can you print \\\"Hello world!\\\"?\"\n            }]\n        },{\n            \"role\": \"model\",\n            \"parts\": [\n               {\n                 \"text\": \"\"\n               },\n               {\n                 \"executable_code\": {\n                   \"language\": \"PYTHON\",\n                   \"code\": \"\\nprint(\\\"hello world!\\\")\\n\"\n                 }\n               },\n               {\n                 \"code_execution_result\": {\n                   \"outcome\": \"OUTCOME_OK\",\n                   \"output\": \"hello world!\\n\"\n                 }\n               },\n               {\n                 \"text\": \"I have printed \\\"hello world!\\\" using the provided python code block. \\n\"\n               }\n             ]\n        },{\n            \"role\": \"user\",\n            \"parts\": [{\n                \"text\": \"What is the sum of the first 50 prime numbers? Generate and run code for the calculation, and make sure you get all 50.\"\n            }]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"port": "{{CONTENT}}",
+					"query": [
+						{
+							"key": "key",
+							"value": "{{TEST_API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "CONTENT",
+			"value": "generateContent",
+			"type": "default"
+		},
+		{
+			"key": "API_URL",
+			"value": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash",
+			"type": "default"
+		}
+	]
+}
