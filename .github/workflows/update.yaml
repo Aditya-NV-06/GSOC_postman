@@ -1,26 +1,30 @@
 name: Update the Postman collection
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    update:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout the repository
-              uses: actions/checkout@v2
-            
-            - name: Sync Postman Collections
-              uses: jneate/postman-collection-action@v1
-              with:
-                postmanApiKey: ${{ secrets.POSTMANAPIKEY }}
-                postmanWorkspaceId: 187c0b66-9d31-44c4-8c5f-ca387ec97690
-                postmanTimeout: 30000
-            
-            - name: Commit Updated Postman Collection IDs
-              uses: stefanzweifel/git-auto-commit-action@v4
-              with:
-                commit_message: Updated Postman Collection ID
- 
+  update-postman:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Validate and Process Postman Collections
+        run: |
+          echo "Validating Postman Collections..."
+          # Add commands to validate and process your Postman collections
+          # For example, using Newman:
+          newman run path/to/collection/Chat_generate.json || exit 1
+          newman run path/to/collection/Text_generate.json || exit 1
+          newman run path/to/collection/Code_Exec.json || exit 1
+        env:
+          POSTMAN_API_KEY: ${{ secrets.POSTMANAPIKEY }}
+
+      - name: Handle Errors
+        if: failure()
+        run: |
+          echo "Error processing one or more Postman collections."
+          exit 1
