@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "187c0b66-9d31-44c4-8c5f-ca387ec97690",
 		"name": "Text_generate",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37285978"
 	},
 	"item": [
@@ -83,15 +83,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{API_URL}}:{{CONTENT}}?key={{TEST_API_KEY}}",
-							"host": [
-								"{{API_URL}}"
-							],
-							"port": "{{CONTENT}}",
+							"raw": ":generateContent?key=•••••••",
+							"port": "generateContent",
 							"query": [
 								{
 									"key": "key",
-									"value": "{{TEST_API_KEY}}"
+									"value": "•••••••"
 								}
 							]
 						}
