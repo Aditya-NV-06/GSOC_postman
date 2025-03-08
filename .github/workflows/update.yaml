@@ -16,7 +16,7 @@ jobs:
               uses: jneate/postman-collection-action@v1
               with:
                 postmanApiKey: ${{ secrets.POSTMANAPIKEY }}
-                postmanWorkspaceId: 0f41daa6-c9a7-49d9-8455-707e2f46da22
+                postmanWorkspaceId: 187c0b66-9d31-44c4-8c5f-ca387ec97690
                 postmanTimeout: 30000
             
             - name: Commit Updated Postman Collection IDs
